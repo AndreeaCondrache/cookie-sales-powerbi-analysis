@@ -24,3 +24,6 @@ Modelul conectează trei tabele principale prin relații de tip **1:N** (*One-to
 ## 3. Vizualizări & Dashboard
 * **Grafice de bare (*Clustered Bar / Column Charts*):** Compararea unităților vândute per client (*Total number of Units Sold după Name*) și analiza numărului de comenzi.
 * **Tabele sintetice (*Matrix/Table Visuals*):** Centralizarea vânzărilor, costurilor, veniturilor și a profitului total per client (*Total Profit*, *Distinct of Customers*, *Revenue - Cost*).
+
+## Dashboard Preview
+![Dashboard Preview](dashboard.png)
