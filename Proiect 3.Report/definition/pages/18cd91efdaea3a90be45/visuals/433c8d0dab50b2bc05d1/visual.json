@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "433c8d0dab50b2bc05d1",
+  "position": {
+    "x": 804,
+    "y": 12,
+    "z": 4,
+    "height": 250,
+    "width": 372,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "Distinct of Customers"
+                }
+              },
+              "queryRef": "Customers.Distinct of Customers",
+              "nativeQueryRef": "Distinct of Customers"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e6ddfa4fb2e74173371b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Customers"
+              }
+            },
+            "Property": "Distinct of Customers"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

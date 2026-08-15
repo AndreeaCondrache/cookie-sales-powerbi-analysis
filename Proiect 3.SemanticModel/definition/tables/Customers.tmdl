@@ -1,0 +1,96 @@
+table Customers
+	lineageTag: 248d753b-3170-4d2a-a452-2927a1be7b27
+
+	measure 'Distinct of Customers' = ```
+			DISTINCTCOUNT(Orders[Customer ID]) 
+			```
+		formatString: 0
+		lineageTag: 66e9c66a-8f5c-4358-87a5-dd105c8be323
+
+	column 'Customer ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7e4afa93-3795-45cf-91e5-9b1c5894d2bd
+		summarizeBy: none
+		sourceColumn: Customer ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: 9f87f486-b34c-454e-a669-421ccfa04547
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Phone
+		dataType: string
+		lineageTag: 63dcd545-bb00-4e57-b30b-c0f039fed2a4
+		summarizeBy: none
+		sourceColumn: Phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address
+		dataType: string
+		lineageTag: 4cba584a-046c-4d7c-b31d-bf93c6263b20
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: ab261927-5c7e-4860-8a7f-d88077b376b9
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 188989df-c363-4ccb-962e-2fe31e1efac2
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Zip
+		dataType: int64
+		formatString: 0
+		lineageTag: 8df09cd2-ac4e-489c-94f0-3a8d9723b891
+		summarizeBy: none
+		sourceColumn: Zip
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: cfd1e0a5-009e-40e4-81d8-32db3034b4bf
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Notes
+		dataType: string
+		lineageTag: 9a933ad0-125a-4182-b897-590e8ddf4665
+		summarizeBy: none
+		sourceColumn: Notes
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Customers = m
+		mode: import
+		source =
+				let
+				    Sursă = Excel.Workbook(File.Contents("C:\Users\andre\Downloads\CURSURI\p3\Customers.xlsx"), null, true),
+				    Customers_Sheet = Sursă{[Item="Customers",Kind="Sheet"]}[Data],
+				    #"Anteturi promovate" = Table.PromoteHeaders(Customers_Sheet, [PromoteAllScalars=true]),
+				    #"Tip modificat" = Table.TransformColumnTypes(#"Anteturi promovate",{{"Customer ID", Int64.Type}, {"Name", type text}, {"Phone", type text}, {"Address", type text}, {"City", type text}, {"State", type text}, {"Zip", Int64.Type}, {"Country", type text}, {"Notes", type text}})
+				in
+				    #"Tip modificat"
+
+	annotation PBI_ResultType = Table
+

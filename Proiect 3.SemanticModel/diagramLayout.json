@@ -1,0 +1,61 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "Customers",
+          "nodeLineageTag": "248d753b-3170-4d2a-a452-2927a1be7b27",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 317.65965900000003,
+            "y": 213.55702700000003
+          },
+          "nodeIndex": "Orders",
+          "nodeLineageTag": "3f20bda8-bc42-435e-8acc-fc4ec684e389",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 690.237709,
+            "y": 98.974342000000007
+          },
+          "nodeIndex": "Cookie Types",
+          "nodeLineageTag": "95e766ce-b931-485a-bc11-f516b70786a5",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 3
+        }
+      ],
+      "name": "Toate tabelele",
+      "zoomValue": 56.447393005377734,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Toate tabelele",
+  "defaultDiagram": "Toate tabelele"
+}

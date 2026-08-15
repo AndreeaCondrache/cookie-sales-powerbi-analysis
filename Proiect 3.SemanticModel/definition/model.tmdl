@@ -1,0 +1,23 @@
+model Model
+	culture: ro-RO
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: ro-RO
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Customers","Orders","Cookie Types"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Customers
+ref table Orders
+ref table DateTableTemplate_7a414c84-ec6b-4975-b363-c42818045f53
+ref table LocalDateTable_81a703cb-5d45-4b8c-9932-b3d34546edbd
+ref table 'Cookie Types'
+
+ref cultureInfo ro-RO
+

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "18116810a97a4f9f1019",
+  "position": {
+    "x": 710,
+    "y": 557.5,
+    "z": 7,
+    "height": 162.5,
+    "width": 135,
+    "tabOrder": 7
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cookie Types"
+                    }
+                  },
+                  "Property": "Total Profit X"
+                }
+              },
+              "queryRef": "Cookie Types.Total Profit X",
+              "nativeQueryRef": "Total Profit X"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

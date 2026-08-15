@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "6f2b08c66f2108e5faca",
+  "position": {
+    "x": 836,
+    "y": 558,
+    "z": 10,
+    "height": 162,
+    "width": 340,
+    "tabOrder": 10
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Orders"
+                    }
+                  },
+                  "Property": "Chocolate chip with over 500 units"
+                }
+              },
+              "queryRef": "Orders.Chocolate chip with over 500 units",
+              "nativeQueryRef": "Chocolate chip with over 500 units"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

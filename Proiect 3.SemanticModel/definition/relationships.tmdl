@@ -1,0 +1,13 @@
+relationship d866e4db-ac87-4134-b430-f4ae3dffdab5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Orders.Date
+	toColumn: LocalDateTable_81a703cb-5d45-4b8c-9932-b3d34546edbd.Date
+
+relationship AutoDetected_404d1267-ccbc-4f94-bb3a-78ee7651c64c
+	fromColumn: Orders.'Customer ID'
+	toColumn: Customers.'Customer ID'
+
+relationship 02bdb11e-e77e-f905-08a9-d4594519cd0f
+	fromColumn: Orders.Product
+	toColumn: 'Cookie Types'.'Cookie Type'
+

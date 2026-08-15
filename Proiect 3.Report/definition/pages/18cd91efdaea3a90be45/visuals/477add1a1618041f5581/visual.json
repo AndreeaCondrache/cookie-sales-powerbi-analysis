@@ -1,0 +1,145 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "477add1a1618041f5581",
+  "position": {
+    "x": 260,
+    "y": 260,
+    "z": 5,
+    "height": 255,
+    "width": 730,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "Name"
+                }
+              },
+              "queryRef": "Customers.Name",
+              "nativeQueryRef": "Name",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Orders"
+                    }
+                  },
+                  "Property": "Total Profit"
+                }
+              },
+              "queryRef": "Orders.Total Profit",
+              "nativeQueryRef": "Total Profit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Customers"
+                    }
+                  },
+                  "Property": "Distinct of Customers"
+                }
+              },
+              "queryRef": "Customers.Distinct of Customers",
+              "nativeQueryRef": "Distinct of Customers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Cookie Types"
+                    }
+                  },
+                  "Property": "Sumă pentru Revenue minus Sumă pentru Cost"
+                }
+              },
+              "queryRef": "Cookie Types.Sumă pentru Revenue minus Sumă pentru Cost",
+              "nativeQueryRef": "Sumă pentru Revenue minus Sumă pentru Cost"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "cf2ff6c772dde7192306",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Orders"
+              }
+            },
+            "Property": "Total Profit"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6675217d3c587ec594af",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Customers"
+              }
+            },
+            "Property": "Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8855daa7e143079370c3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Customers"
+              }
+            },
+            "Property": "Distinct of Customers"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "ba1c1a6628fc93ce7296",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Cookie Types"
+              }
+            },
+            "Property": "Sumă pentru Revenue minus Sumă pentru Cost"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

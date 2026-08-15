@@ -1,0 +1,144 @@
+table Orders
+	lineageTag: 3f20bda8-bc42-435e-8acc-fc4ec684e389
+
+	measure 'Total number of Units Sold' = sum(Orders[Units Sold])
+		formatString: #,0
+		lineageTag: fb9840ea-69f3-404a-89f2-804a46795e55
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Count of Orders' = ```
+			COUNTROWS(Orders) 
+			```
+		formatString: 0
+		lineageTag: ad5600a5-0592-43df-a0cc-82cdc44a0ac5
+
+	measure 'Total Profit' = ```
+			sum(Orders[Revenue]) - sum(Orders[Cost]) 
+			```
+		lineageTag: adec1c87-648a-4fb9-8cbd-fbc2ed799d00
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Profit Margin %' = [Total Profit] / sum(Orders[Revenue])
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 47523e96-09ae-488f-99ab-fc1791c7ee58
+
+	measure 'Chocolate chip with over 500 units' = CALCULATE(COUNTROWS(Orders), Orders[Units Sold]>500, Orders[Product]=="Chocolate Chip")
+		formatString: 0
+		lineageTag: 8960d004-bb72-41ef-beb9-21146bc5d6a3
+
+	column 'Customer ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 821e9ce7-d888-44c7-93f5-a0ded0893baa
+		summarizeBy: none
+		sourceColumn: Customer ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Order ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: c413c9a7-eb2b-4779-8d89-589645ae9076
+		summarizeBy: count
+		sourceColumn: Order ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: 14711fec-f5b3-4476-9691-e271e04cf5a4
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Units Sold'
+		dataType: double
+		lineageTag: f40f7608-1e7b-4d12-b404-18d102aec57f
+		summarizeBy: sum
+		sourceColumn: Units Sold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a70b85a8-065f-4882-8af0-27deff52161f
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variație
+			isDefault
+			relationship: d866e4db-ac87-4134-b430-f4ae3dffdab5
+			defaultHierarchy: LocalDateTable_81a703cb-5d45-4b8c-9932-b3d34546edbd.'Ierarhie de date'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Revenue
+		dataType: double
+		lineageTag: 3d035be6-6f5c-47ba-a82a-ef31c5734bcd
+		summarizeBy: sum
+		sourceColumn: Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cost
+		dataType: int64
+		formatString: 0
+		lineageTag: d780369d-14c1-4521-92df-ad60a1ae166b
+		summarizeBy: sum
+		sourceColumn: Cost
+
+		annotation SummarizationSetBy = Automatic
+
+	column Profit = ```
+			Orders[Revenue] - Orders[Cost]  
+			```
+		lineageTag: 7e297dcc-fe2e-49b7-9efa-56c36734faee
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Day of week' = WEEKDAY(Orders[Date],1)
+		formatString: 0
+		lineageTag: 8ea4bd1f-9198-4b65-b729-03d8cf3d8f37
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product with Chocolate' = if( FIND("Chocolate", Orders[Product],1,0) > 0 , "Has Chocolate", "No Chocolate")
+		lineageTag: ad2064db-2953-4cb0-a4d4-4cbaf1b8e5b4
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Product Ierarhie'
+		lineageTag: e6396dbf-58be-4570-a36b-9e6644a58d1d
+
+		level Product
+			lineageTag: f4b0ce52-e203-4a1c-8f1f-3f390679604e
+			column: Product
+
+	partition Orders = m
+		mode: import
+		source =
+				let
+				    Sursă = Excel.Workbook(File.Contents("C:\Users\andre\Downloads\CURSURI\p3\Orders.xlsx"), null, true),
+				    Orders_Sheet = Sursă{[Item="Orders",Kind="Sheet"]}[Data],
+				    #"Anteturi promovate" = Table.PromoteHeaders(Orders_Sheet, [PromoteAllScalars=true]),
+				    #"Tip modificat" = Table.TransformColumnTypes(#"Anteturi promovate",{{"Customer ID", Int64.Type}, {"Order ID", Int64.Type}, {"Product", type text}, {"Units Sold", type number}, {"Date", type date}, {"Revenue", type number}, {"Cost", Int64.Type}})
+				in
+				    #"Tip modificat"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,7 @@
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+*.pbi
+*.abf
+.vscode/
+# Exclude cache-ul local de date dacă fișierul este prea mare
+*.cache.abf

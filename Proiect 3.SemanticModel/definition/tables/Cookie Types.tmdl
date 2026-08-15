@@ -1,0 +1,75 @@
+table 'Cookie Types'
+	lineageTag: 95e766ce-b931-485a-bc11-f516b70786a5
+
+	measure 'Sumă pentru Revenue minus Sumă pentru Cost' =
+			
+			SUM('Orders'[Revenue]) - SUM('Orders'[Cost])
+		lineageTag: 9eceed1f-f08c-4ed8-9599-053010a613de
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "MathematicalSubtraction"
+				}
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Profit X' = ```
+			sumx('Cookie Types', 'Cookie Types'[Units Sold] * ('Cookie Types'[Revenue Per Cookie] - 'Cookie Types'[Cost Per Cookie])) 
+			```
+		lineageTag: e6f5e7e1-2559-40b3-8555-cb507b789461
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Cookie Type'
+		dataType: string
+		lineageTag: 835a5f5f-946c-4b9a-9242-cb982032583c
+		summarizeBy: none
+		sourceColumn: Cookie Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Units Sold'
+		dataType: double
+		lineageTag: a0c61362-341f-44ac-a33c-f16b3f7768ee
+		summarizeBy: none
+		sourceColumn: Units Sold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Revenue Per Cookie'
+		dataType: int64
+		formatString: 0
+		lineageTag: c0f8c0bd-c8b6-4877-8067-5d6f89bfab94
+		summarizeBy: none
+		sourceColumn: Revenue Per Cookie
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Cost Per Cookie'
+		dataType: double
+		lineageTag: eae95470-087f-4b0d-9562-ff5599e1df21
+		summarizeBy: none
+		sourceColumn: Cost Per Cookie
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Cookie Types' = m
+		mode: import
+		source =
+				let
+				    Sursă = Excel.Workbook(File.Contents("C:\Users\andre\Downloads\CURSURI\p3\Cookie Types.xlsx"), null, true),
+				    #"Cookie Types_Sheet" = Sursă{[Item="Cookie Types",Kind="Sheet"]}[Data],
+				    #"Anteturi promovate" = Table.PromoteHeaders(#"Cookie Types_Sheet", [PromoteAllScalars=true]),
+				    #"Tip modificat" = Table.TransformColumnTypes(#"Anteturi promovate",{{"Cookie Type", type text}, {"Units Sold", type number}, {"Revenue Per Cookie", Int64.Type}, {"Cost Per Cookie", type number}})
+				in
+				    #"Tip modificat"
+
+	annotation PBI_ResultType = Table
+
